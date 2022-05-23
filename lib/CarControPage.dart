@@ -43,7 +43,10 @@ class _CarControPageState extends State<CarControPage> {
       top: false,
       child: Scaffold(
         appBar: AppBar(
-          title: const Text("Contro"),
+          backgroundColor: const Color.fromRGBO(22, 23, 24, 1),
+          elevation: 0.0,
+          title: const Text(""),
+
         ),
         body:Container(
           alignment: Alignment.center,

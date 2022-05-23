@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:neveruseless/neveruseless.dart';
 import 'package:uzi/CarPage.dart';
 import 'package:uzi/MapPage.dart';
 
@@ -9,7 +10,7 @@ class HomePage extends StatefulWidget {
   @override
   createState() => _HomePageState();
 }
-
+var scaffoldkey = GlobalKey<ScaffoldState>();
 class dModel{
   Icon icon;
   String? text;
@@ -24,16 +25,22 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
+    neverBus.on("BottomBarToggle", (object) {
+      setState(() {
+        currentIndex = object;
+        pageController.jumpToPage(currentIndex);
+      });
+    });
   }
 
   @override
   void dispose() {
+    neverBus.off("BottomBarToggle");
     super.dispose();
   }
 
   void onTap(int index) {
     pageController.jumpToPage(index);
-
   }
 
   void onPageChanged(int index) {
@@ -60,6 +67,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: scaffoldkey,
       drawer: Drawer(
         width: MediaQuery.of(context).size.width * 3 / 4,
         child: Container(
@@ -190,7 +198,7 @@ class _HomePageState extends State<HomePage> {
         controller: pageController,
         onPageChanged: onPageChanged,
         physics: const NeverScrollableScrollPhysics(),
-        children: pages, // 禁止滑动
+        children: pages,
       ),
       bottomNavigationBar: BottomNavigationBar(
         items:const [
@@ -211,6 +219,7 @@ class _HomePageState extends State<HomePage> {
         selectedItemColor: const Color.fromRGBO(37, 97, 161, 1),
         unselectedItemColor: Colors.black,
         onTap: onTap,
+
       ),
     );
   }

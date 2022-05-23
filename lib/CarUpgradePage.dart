@@ -20,7 +20,7 @@ class _CarUpgradePageState extends State<CarUpgradePage> {
   void dispose() {
     super.dispose();
   }
-  bool touch = false;
+  bool touch = true;
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +42,7 @@ class _CarUpgradePageState extends State<CarUpgradePage> {
                 padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
                 child: Row(
                   children: [
-                    const Text("当前版本",style: TextStyle(fontSize: 20,color: Colors.black,fontWeight: FontWeight.w700),),
+                    const Text("currently version",style: TextStyle(fontSize: 20,color: Colors.black,fontWeight: FontWeight.w700),),
                     const SizedBox(width: 20,),
                     Expanded(
                       child: Container(
@@ -67,7 +67,7 @@ class _CarUpgradePageState extends State<CarUpgradePage> {
                     color: touch ?  const Color.fromRGBO(37, 97, 161, 1) : Colors.grey,
                     borderRadius: const BorderRadius.all(Radius.circular(6.0)),
                   ),
-                  child: const Text("升级",style: TextStyle(fontSize: 20,color: Colors.white,fontWeight: FontWeight.w800),),
+                  child: const Text("upgreade",style: TextStyle(fontSize: 20,color: Colors.white,fontWeight: FontWeight.w800),),
                   alignment: Alignment.center,
                   padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
                 ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:uzi/HomePage.dart';
 
 class CarPage extends StatefulWidget {
   final Map? arguments;
@@ -43,31 +44,12 @@ class _CarPageState extends State<CarPage> {
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Expanded(
-                    child: Column(
-                      children: [
-                        Container(
-                          alignment: Alignment.centerLeft,
-                          child: const Text("IX's 3",style: TextStyle(fontSize: 25,color: Colors.black,fontWeight: FontWeight.w600),),
-                        ),
-                        Container(
-                          alignment: Alignment.centerLeft,
-                          padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
-                          child: Row(
-                            children: const [
-                              Icon(Icons.battery_2_bar_rounded,color: Colors.grey,size: 20,),
-                              Text("84%",style: TextStyle(fontSize: 15,color: Colors.grey,fontWeight: FontWeight.w600),)
-                            ],
-                          )
-                        ),
-                        Container(
-                          alignment: Alignment.centerLeft,
-                          child: const Text("Parking",style: TextStyle(fontSize: 15,color: Colors.grey,fontWeight: FontWeight.w600),),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Container(
+                  GestureDetector(
+                    behavior: HitTestBehavior.opaque,
+                    onTap: (){
+                      scaffoldkey.currentState!.openDrawer();
+                      // Navigator.pushNamed(context, "/PersonalInformationPage");
+                    },
                     child: CircleAvatar(
                       maxRadius: 20,
                       backgroundColor:Colors.grey,
@@ -75,10 +57,35 @@ class _CarPageState extends State<CarPage> {
                         width: 60,
                         height: 60,
                         alignment: Alignment.center,
-                        child: const Text("T",style: TextStyle(fontSize: 13,color: Colors.white,fontWeight: FontWeight.w800),),
+                        child: const Text("C",style: TextStyle(fontSize: 13,color: Colors.white,fontWeight: FontWeight.w800),),
                       ),
                     ),
-                  )
+                  ),
+                  Expanded(
+                    child: Column(
+                      children: [
+                        Container(
+                          alignment: Alignment.centerRight,
+                          child: const Text("CC's 3",style: TextStyle(fontSize: 25,color: Colors.black,fontWeight: FontWeight.w600),),
+                        ),
+                        Container(
+                          alignment: Alignment.centerRight,
+                          padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: const [
+                              Icon(Icons.battery_2_bar_rounded,color: Colors.grey,size: 20,),
+                              Text("84%",style: TextStyle(fontSize: 15,color: Colors.grey,fontWeight: FontWeight.w600),)
+                            ],
+                          )
+                        ),
+                        Container(
+                          alignment: Alignment.centerRight,
+                          child: const Text("Parking",style: TextStyle(fontSize: 15,color: Colors.grey,fontWeight: FontWeight.w600),),
+                        ),
+                      ],
+                    ),
+                  ),
                 ],
               ),
               const SizedBox(height: 20,),
@@ -98,7 +105,7 @@ class _CarPageState extends State<CarPage> {
                   ),
                   Expanded(
                     child: IconButton(
-                      icon: Icon(Icons.mode_fan_off_rounded,color: icon2! ? Colors.blue : Colors.grey,size: 30,),
+                      icon: Icon(Icons.ac_unit_rounded,color: icon2! ? Colors.blue : Colors.grey,size: 30,),
                       onPressed: (){
                         setState((){
                           icon2 = !icon2!;
@@ -165,7 +172,7 @@ class _CarPageState extends State<CarPage> {
                       padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
                       child: Row(
                         children: [
-                          const Icon(Icons.mode_fan_off_rounded,color: Colors.grey,size: 30,),
+                          const Icon(Icons.ac_unit_rounded,color: Colors.grey,size: 30,),
                           const SizedBox(width: 20,),
                           Expanded(
                               child: Column(

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:uzi/HomePage.dart';
 
 class MapPage extends StatefulWidget {
   final Map? arguments;
@@ -6,6 +8,7 @@ class MapPage extends StatefulWidget {
 
   @override
   createState() => _MapPageState();
+
 }
 
 class mModel{
@@ -16,7 +19,10 @@ class mModel{
 
   String? dialogText;
   String? dialogText1;
-  mModel(this.url, this.text,this.text1,this.address,this.dialogText,this.dialogText1);
+
+  LatLng? data;
+  String? addressName;
+  mModel(this.url, this.text,this.text1,this.address,this.dialogText,this.dialogText1,this.data,this.addressName);
 }
 
 class _MapPageState extends State<MapPage> {
@@ -25,9 +31,12 @@ class _MapPageState extends State<MapPage> {
   final TextEditingController _searchController = TextEditingController();
 
   final List<mModel> _messageList = [
-    mModel("assets/tsl.png","Parking Zone","Public parking space","38 woburn PI 5.7mi","free parking lot：35","free charging lot：4"),
-    mModel("assets/tsl.png","Parking Zone","Public parking space","38 woburn PI 5.7mi","free parking lot：35","free charging lot：4"),
-    mModel("assets/tsl.png","Parking Zone","Public parking space","38 woburn PI 5.7mi","free parking lot：35","free charging lot：4"),
+    mModel("assets/tsl.png","Parking Zone","Public parking space","38 woburn PI ","free parking lot：35","free charging lot：4",
+        LatLng(51.52430129244981, -0.1275243081851175),"38 Woburn Pl, London WC1H 0JR"),
+    mModel("assets/tsl.png","Just Park","Public parking space","Duke Street St James's, St. James's","free parking lot：1","free charging lot：0",
+        LatLng(51.516546705001424, -0.11449914587942217),"London , London SW1Y 6JF"),
+    mModel("assets/tsl.png","Q-Park ParkLane","Public parking space","Park Ln","free parking lot：55","free charging lot：7",
+        LatLng(51.51686135241897, -0.12867967707891995),"New Oxford St, London W1K 7AN"),
   ];
 
   @override
@@ -54,22 +63,29 @@ class _MapPageState extends State<MapPage> {
             FocusScope.of(context).requestFocus(FocusNode());
           },
           child: Container(
-            color: const Color.fromRGBO(224, 246, 255, 1),
+            color: const Color.fromRGBO(228, 246, 254, 1),
             child: ListView(
               children: [
                 Container(
                   alignment: Alignment.centerLeft,
                   padding: const EdgeInsets.fromLTRB(20, 0, 10, 10),
-                  child:  CircleAvatar(
-                    maxRadius: 30,
-                    backgroundColor:Colors.white,
-                    child: Container(
-                      width: 60,
-                      height: 60,
-                      alignment: Alignment.center,
-                      child: const Text("T",style: TextStyle(fontSize: 15,color: Color.fromRGBO(255, 65, 131, 1),fontWeight: FontWeight.w800),),
+                  child: GestureDetector(
+                    child:  CircleAvatar(
+                      maxRadius: 30,
+                      backgroundColor:Colors.white,
+                      child: Container(
+                        width: 60,
+                        height: 60,
+                        alignment: Alignment.center,
+                        child: const Text("C",style: TextStyle(fontSize: 15,color: Color.fromRGBO(255, 65, 131, 1),fontWeight: FontWeight.w800),),
+                      ),
                     ),
-                  ),
+                    behavior: HitTestBehavior.opaque,
+                    onTap: (){
+                      scaffoldkey.currentState!.openDrawer();
+                      // Navigator.pushNamed(context, "/PersonalInformationPage");
+                    },
+                  )
                 ),
                 Container(
                     padding: const EdgeInsets.fromLTRB(30, 10, 30, 10),
@@ -182,7 +198,9 @@ class _MapPageState extends State<MapPage> {
                                         ),
                                         onTap: (){
                                           Navigator.pop(context);
-                                          Navigator.pushNamed(context, "/GoogleMapPage");
+                                          Navigator.pushNamed(context, "/GoogleMapPage",arguments: {
+                                            "data" : _messageList[index],
+                                          });
                                         },
                                       ),
                                     ],
@@ -195,8 +213,16 @@ class _MapPageState extends State<MapPage> {
                       child: Container(
                         margin: const EdgeInsets.fromLTRB(30, 10, 30, 0),
                         decoration: const BoxDecoration(
-                          color: Color.fromRGBO(204, 232, 243, 1),
+                          color: Colors.white,
                           borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                          boxShadow: [
+                            BoxShadow(
+                                blurRadius: 5,
+                                spreadRadius: 1,
+                                color: Colors.grey,
+                                offset:Offset(5,5)
+                            ),
+                          ],
                         ),
                         child: Row(
                           children: [

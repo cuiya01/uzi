@@ -30,7 +30,11 @@ class _SettingPageState extends State<SettingPage> {
       top: false,
       child: Scaffold(
         appBar: AppBar(
-          title: const Text("Setting"),
+          backgroundColor: const Color.fromRGBO(224, 246, 255, 1),
+          elevation: 0.0,
+          title: const Text(""),
+
+
         ),
         body:Container(
           color: const Color.fromRGBO(224, 246, 255, 1),
@@ -39,31 +43,50 @@ class _SettingPageState extends State<SettingPage> {
             children: [
               Container(
                 margin: const EdgeInsets.fromLTRB(30, 20, 30, 20),
-                decoration: BoxDecoration(
-                  color: Colors.transparent,
-                  //边框圆角设置
-                  border: Border.all(width: 1, color: Colors.black),
-                  borderRadius: const BorderRadius.all(Radius.circular(10.0)),
-                ),
                 child: Column(
-                  // physics: const NeverScrollableScrollPhysics(),
-                  // shrinkWrap: true,
                   children: [
                     Container(
-                      height: 70,
-                      padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          const Text("edit home work",style: TextStyle(fontSize: 20,color: Colors.black,fontWeight: FontWeight.w700),),
-                          Icon(Icons.keyboard_arrow_right_rounded,color: Colors.grey[800],size: 30,),
+                        decoration:const BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                          boxShadow: [
+                            BoxShadow(
+                                blurRadius: 5,
+                                spreadRadius: 1,
+                                color: Colors.grey,
+                                offset:Offset(2,2)
+                            ),
+                          ],
+                        ),
+                        height: 70,
+                        margin: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+                        alignment: Alignment.centerLeft,
+                        padding: const EdgeInsets.fromLTRB(10, 20, 10, 20),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            const Text("edit home work",style: TextStyle(fontSize: 20,color: Colors.black,fontWeight: FontWeight.w700),),
+                            Icon(Icons.keyboard_arrow_right_rounded,color: Colors.grey[800],size: 30,),
+                          ],
+                        ),
+                    ),
+                    Container(
+                      decoration:const BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                        boxShadow: [
+                          BoxShadow(
+                              blurRadius: 5,
+                              spreadRadius: 1,
+                              color: Colors.grey,
+                              offset:Offset(2,2)
+                          ),
                         ],
                       ),
-                    ),
-                    const Divider(height: 1,color: Colors.black,),
-                    Container(
                       height: 70,
-                      padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
+                      margin: const EdgeInsets.fromLTRB(0, 20, 0, 0),
+                      alignment: Alignment.centerLeft,
+                      padding: const EdgeInsets.fromLTRB(10, 20, 10, 20),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -72,10 +95,23 @@ class _SettingPageState extends State<SettingPage> {
                         ],
                       ),
                     ),
-                    const Divider(height: 1,color: Colors.black,),
                     Container(
+                      decoration:const BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                        boxShadow: [
+                          BoxShadow(
+                              blurRadius: 5,
+                              spreadRadius: 1,
+                              color: Colors.grey,
+                              offset:Offset(2,2)
+                          ),
+                        ],
+                      ),
                       height: 70,
-                      padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
+                      alignment: Alignment.centerLeft,
+                      margin: const EdgeInsets.fromLTRB(0, 20, 0, 0),
+                      padding: const EdgeInsets.fromLTRB(10, 20, 10, 20),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -98,6 +134,14 @@ class _SettingPageState extends State<SettingPage> {
                     decoration: const BoxDecoration(
                       color: Colors.red,
                       borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                      boxShadow: [
+                        BoxShadow(
+                            blurRadius: 5,
+                            spreadRadius: 1,
+                            color: Colors.grey,
+                            offset:Offset(2,2)
+                        ),
+                      ],
                     ),
                     alignment: Alignment.center,
                     padding: const EdgeInsets.fromLTRB(0, 20, 0, 20),

@@ -1,4 +1,5 @@
 
+import 'package:animated_flip_counter/animated_flip_counter.dart';
 import 'package:flutter/material.dart';
 
 class CarTemperaturePage extends StatefulWidget {
@@ -38,138 +39,130 @@ class _CarTemperaturePageState extends State<CarTemperaturePage> {
       top: false,
       child: Scaffold(
         appBar: AppBar(
-          title: const Text("Temperature"),
+          backgroundColor: const Color.fromRGBO(224, 246, 255, 1),
+          elevation: 0.0,
+          title: const Text(""),
+          actions: [
+          ],
         ),
         body:Container(
           padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
           child:Column(
             children: [
-              Expanded(
+              Container(
+                child: const Text("temperature",style: TextStyle(fontWeight: FontWeight.w600,color: Colors.grey,fontSize: 25),),
+                padding: const EdgeInsets.fromLTRB(20, 20, 20, 10),
+                alignment: Alignment.centerLeft,
+              ),
+              Container(
+                decoration: const BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.all(Radius.circular(20.0)),
+                  boxShadow: [
+                    BoxShadow(
+                        blurRadius: 5,
+                        spreadRadius: 1,
+                        color: Colors.grey,
+                        offset:Offset(2,2)
+
+                    ),
+                  ],
+
+                ),
+                padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
+                child:  Row(
+                  children: [
+                    const SizedBox(height: 20,),
+                    GestureDetector(
+                      child: const Icon(Icons.add,size: 50,color: Colors.black,),
+                      behavior: HitTestBehavior.opaque,
+                      onTap: (){
+                        setState((){
+                          temperature ++ ;
+                        });
+                      },
+                    ),
+                    const SizedBox(height: 20,),
+                    Expanded(
+                      child: AnimatedFlipCounter(
+                        value: temperature,
+                        fractionDigits: 0,
+                        suffix: "℃",
+                        textStyle: TextStyle(
+                          fontSize: 40,
+                          color: model == 0 ? Colors.red : Colors.blue,
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 20,),
+                    GestureDetector(
+                      child: const Icon(Icons.remove,size: 50,color: Colors.black),
+                      behavior: HitTestBehavior.opaque,
+                      onTap: (){
+                        setState((){
+                          temperature -- ;
+                        });
+                      },
+                    ),
+                    const SizedBox(height: 20,),
+                  ],
+                ),
+              ),
+              Container(
+                child: const Text("switch",style: TextStyle(fontWeight: FontWeight.w600,color: Colors.grey,fontSize: 25),),
+                padding: const EdgeInsets.fromLTRB(20, 20, 20, 10),
+                alignment: Alignment.centerLeft,
+              ),
+              Container(
+                padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
+                decoration: const BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.all(Radius.circular(20.0)),
+                  boxShadow: [
+                    BoxShadow(
+                        blurRadius: 5,
+                        spreadRadius: 1,
+                        color: Colors.grey,
+                        offset:Offset(2,2)
+
+                    ),
+                  ],
+
+                ),
                 child: Row(
                   children: [
                     Expanded(
-                      child: Column(
-                        children: [
-                          GestureDetector(
-                            child: const Icon(Icons.arrow_drop_up_rounded,size: 100,color: Color.fromRGBO(37, 97, 161, 1),),
-                            behavior: HitTestBehavior.opaque,
-                            onTap: (){
-                              setState((){
-                                temperature ++ ;
-                              });
-                            },
-                          ),
-                          Container(
-                            height: 150,
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              //边框圆角设置
-                              border: Border.all(width: 1, color: const Color.fromRGBO(37, 97, 161, 1)),
-                              borderRadius: const BorderRadius.all(Radius.circular(3.0)),
-                            ),
-                            child: Text(temperature.toString() + "℃",style: TextStyle(fontSize: 50,color: model == 0 ? Colors.red : Colors.blue),),
-                            padding: const EdgeInsets.fromLTRB(0, 30, 0, 30),
-                            alignment: Alignment.center,
-                          ),
-                          GestureDetector(
-                            child: const Icon(Icons.arrow_drop_down_rounded,size: 100,color: Color.fromRGBO(37, 97, 161, 1),),
-                            behavior: HitTestBehavior.opaque,
-                            onTap: (){
-                              setState((){
-                                temperature -- ;
-                              });
-                            },
-                          )
-                        ],
+                      child: GestureDetector(
+                        child: Icon(Icons.wb_sunny,size: 50,color: model == 0 ? Colors.red : Colors.grey,),
+                        behavior: HitTestBehavior.opaque,
+                        onTap: (){
+                          setState((){
+                            model = 0;
+                          });
+                        },
                       ),
                     ),
-                    const SizedBox(width: 30,),
+                    Container(
+                      child: VerticalDivider(width: 1,color: Colors.black,),
+                      alignment: Alignment.center,
+                      color: Colors.black,
+                      width: 1,
+                      height: 40,
+                    ),
                     Expanded(
-                      child: Column(
-                        children: [
-                          GestureDetector(
-                            child: const Icon(Icons.arrow_drop_up_rounded,size: 100,color: Color.fromRGBO(37, 97, 161, 1),),
-                            behavior: HitTestBehavior.opaque,
-                            onTap: (){
-                              setState((){
-                                model = 0;
-                              });
-                            },
-                          ),
-                          Container(
-                            height: 150,
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              //边框圆角设置
-                              border: Border.all(width: 1, color: const Color.fromRGBO(37, 97, 161, 1)),
-                              borderRadius: const BorderRadius.all(Radius.circular(3.0)),
-                            ),
-                            child: Icon(model == 0 ? Icons.wb_sunny : Icons.ac_unit_rounded,size: 100,color: model == 0 ? Colors.red : const Color.fromRGBO(37, 97, 161, 1),),
-                            padding: const EdgeInsets.fromLTRB(0, 30, 0, 30),
-                            alignment: Alignment.center,
-                          ),
-                          GestureDetector(
-                            child: const Icon(Icons.arrow_drop_down_rounded,size: 100,color: Color.fromRGBO(37, 97, 161, 1),),
-                            behavior: HitTestBehavior.opaque,
-                            onTap: (){
-                              setState((){
-                                model = 1;
-                              });
-                            },
-                          )
-                        ],
+                      child: GestureDetector(
+                        child: Icon(Icons.ac_unit_rounded,size: 50,color: model == 1 ? const Color.fromRGBO(37, 97, 161, 1) : Colors.grey,),
+                        behavior: HitTestBehavior.opaque,
+                        onTap: (){
+                          setState((){
+                            model = 1;
+                          });
+                        },
                       ),
                     ),
                   ],
                 ),
               ),
-              Expanded(
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: Column(
-                        children: [
-                          GestureDetector(
-                            child:Icon(Icons.power,size: 100,color: _on ? const Color.fromRGBO(37, 97, 161, 1) : Colors.grey,),
-                            behavior: HitTestBehavior.opaque,
-                            onTap: (){
-                              setState((){
-                                _on = !_on;
-                              });
-                            },
-                          ),
-                          Container(
-                            child: Text("On",style: TextStyle(fontSize: 50,color: _on ?  const Color.fromRGBO(37, 97, 161, 1) : Colors.grey),),
-                            padding: const EdgeInsets.fromLTRB(0, 30, 0, 30),
-                            alignment: Alignment.center,
-                          ),
-                        ],
-                      ),
-                    ),
-                    const SizedBox(width: 30,),
-                    Expanded(
-                      child: Column(
-                        children: [
-                          GestureDetector(
-                            child:  Icon(Icons.power_off,size: 100,color:_on ? Colors.grey: const Color.fromRGBO(37, 97, 161, 1),),
-                            behavior: HitTestBehavior.opaque,
-                            onTap: (){
-                              setState((){
-                                _on = !_on;
-                              });
-                            },
-                          ),
-                          Container(
-                            child: Text("Off",style: TextStyle(fontSize: 50,color: _on ? Colors.grey: const Color.fromRGBO(37, 97, 161, 1)),),
-                            padding: const EdgeInsets.fromLTRB(0, 30, 0, 30),
-                            alignment: Alignment.center,
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              )
             ],
           )
         ),

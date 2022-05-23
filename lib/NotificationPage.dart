@@ -56,19 +56,15 @@ class _NotificationPageState extends State<NotificationPage> {
                       const SizedBox(height: 20,),
                       const ListTile(
                         leading: Icon(Icons.album),
-                        title: Text('The Enchanted Nightingale'),
-                        subtitle: Text('Music by Julie Gable. Lyrics by Sidney Stein.'),
+                        title: Text('Charging complete'),
+                        subtitle: Text('Located in 35 Mornington Ave, London W14 8UJ'),
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: <Widget>[
-                          TextButton(
-                            child: const Text('BUY TICKETS'),
-                            onPressed: () {/* ... */},
-                          ),
                           const SizedBox(width: 8),
                           TextButton(
-                            child: const Text('LISTEN'),
+                            child: const Text('more'),
                             onPressed: () {/* ... */},
                           ),
                           const SizedBox(width: 8),
@@ -77,6 +73,7 @@ class _NotificationPageState extends State<NotificationPage> {
                     ],
                   ),
                 ),
+
               ),
             ],
           ),
